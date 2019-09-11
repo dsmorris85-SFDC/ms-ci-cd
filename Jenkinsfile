@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'bat-builder'
+    any
   }
   environment {
     DEPLOY_CREDS = credentials('deploy-anypoint-user')
