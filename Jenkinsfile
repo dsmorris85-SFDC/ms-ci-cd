@@ -6,7 +6,7 @@ pipeline {
     MULE_VERSION = '4.1.5'
     BG = "1Platform\\Public\\CI-CD Demo"
     WORKER = "Micro"
-    APPNAME = "tech-talk-mobile-customer-api"
+    APPNAME = "devops-1-hello-world"
 
     DEPLOY_BAT = "true"
   }
@@ -17,27 +17,27 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps {
-	      withMaven(
-          mavenSettingsConfig: 'public-maven-config.xml') {
-            sh "mvn -B -Dmule.env=dev test"
-          }
-      }
-      post {
-        always {
-          publishHTML (target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: true,
-                        reportDir: 'target/site/munit/coverage',
-                        reportFiles: 'summary.html',
-                        reportName: "Code coverage"
-                    ]
-                  )
-        }
-      }
-    }
+#    stage('Test') {
+#      steps {
+#	      withMaven(
+#          mavenSettingsConfig: 'public-maven-config.xml') {
+#            sh "mvn -B -Dmule.env=dev test"
+#          }
+#      }
+#      post {
+#        always {
+#          publishHTML (target: [
+#                        allowMissing: false,
+#                        alwaysLinkToLastBuild: false,
+#                        keepAll: true,
+#                       reportDir: 'target/site/munit/coverage',
+#                        reportFiles: 'summary.html',
+#                        reportName: "Code coverage"
+#                    ]
+#                  )
+#        }
+#      }
+#    }
 
     stage('Deploy Development') {
       environment {
@@ -59,11 +59,11 @@ pipeline {
         }
   	}
   }
-  post {
-      always {
-       step([$class: 'hudson.plugins.chucknorris.CordellWalkerRecorder'])
-      }
-  }
+#  post {
+#      always {
+#       step([$class: 'hudson.plugins.chucknorris.CordellWalkerRecorder'])
+#      }
+#  }
   tools {
     maven 'M3'
   }
