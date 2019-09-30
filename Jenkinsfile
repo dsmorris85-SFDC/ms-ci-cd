@@ -17,7 +17,7 @@ pipeline {
       }
     }
 
-    stage('Deploy Development') {
+    stage('Deploy to Development') {
       environment {
         ENVIRONMENT = 'Development'
         APP_NAME = 'dev-${APPNAME}'
