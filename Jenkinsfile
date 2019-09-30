@@ -26,16 +26,6 @@ pipeline {
             sh 'mvn -U -V -e -B -X -DskipTests deploy -DmuleDeploy -Dmule.version=$MULE_VERSION -Danypoint.username=$DEPLOY_CREDS_USR -Danypoint.password=$DEPLOY_CREDS_PSW -Dcloudhub.app=$APP_NAME -Dcloudhub.environment=$ENVIRONMENT -Dcloudhub.bg="$BG" -Dcloudhub.worker=$WORKER -Denv.name=dev'
       }
     }
-
-    stage('Deploy Production') {
-        environment {
-          ENVIRONMENT = 'Production'
-          APP_NAME = '${APPNAME}'
-        }
-        steps {
-              sh 'mvn -U -V -e -B -X -DskipTests deploy -DmuleDeploy -Dmule.version=$MULE_VERSION -Danypoint.username=$DEPLOY_CREDS_USR -Danypoint.password=$DEPLOY_CREDS_PSW -Dcloudhub.app=$APP_NAME -Dcloudhub.environment=$ENVIRONMENT -Dcloudhub.bg="$BG" -Dcloudhub.worker=$WORKER -Denv.name=prod'
-        }
-  	}
   }
   tools {
     maven 'maven'
